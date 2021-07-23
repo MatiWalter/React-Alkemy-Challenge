@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import {
   BrowserRouter as Router,
   Switch,
@@ -7,10 +7,11 @@ import { PublicRoute } from './PublicRoute';
 import { LoginScreen } from '../components/login/LoginScreen'
 import { PrivateRoute } from './PrivateRoute';
 import { HomeRoutes } from './HomeRoutes';
+import { AuthContext } from '../auth/AuthContext';
 
 export const AppRouter = () => {
 
-  const token = localStorage.getItem('user');
+  const { user } = useContext(AuthContext);
 
   return (
     <Router>
@@ -19,12 +20,12 @@ export const AppRouter = () => {
           <PublicRoute
             path="/login"
             component={LoginScreen}
-            isAuthenticated={token}
+            isAuthenticated={user.logged}
           />
           <PrivateRoute
             path="/"
             component={HomeRoutes}
-            isAuthenticated={token}
+            isAuthenticated={user.logged}
           />
         </Switch>
       </div>
