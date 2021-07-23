@@ -11,15 +11,15 @@ export const TeamScreen = () => {
   const handleClick = () => {
     history.replace('/login');
 
-        dispatch({
-            type: types.logout
-        });
+    dispatch({
+      type: types.logout
+    });
   }
 
   return (
     <div>
       <h1>TeamScreen</h1>
-      <button 
+      <button
         className="btn btn-primary"
         onClick={handleClick}
       >
