@@ -1,11 +1,26 @@
+import React, { useContext } from 'react'
 import { useFormik } from 'formik'
-import React from 'react'
-import { getToken } from '../../helpers/getToken'
-import { Footer } from '../ui/Footer'
 import Swal from 'sweetalert2';
+import { AuthContext } from '../../auth/AuthContext';
+import { Footer } from '../ui/Footer'
+import { types } from '../../types/types';
+import { getToken } from '../../helpers/getToken'
 import 'sweetalert2/dist/sweetalert2.min.css';
 
-export const LoginScreen = () => {
+export const LoginScreen = ({ history }) => {
+
+  const { dispatch } = useContext(AuthContext);
+
+  const handleLogin = (token) => {
+    const lastPath = localStorage.getItem('lastPath') || '/';
+    dispatch({
+      type: types.login,
+      payload: {
+        token
+      }
+    });
+    history.replace(lastPath);
+  }
 
   const validate = values => {
     const regex = /^[^\W\d][A-Za-z0-9_\-.]+@([A-Za-z]+\.)+[A-Za-z]{2,4}/;
@@ -33,10 +48,10 @@ export const LoginScreen = () => {
         title: 'Error',
         text: 'Email address or password are incorrect'
       });
+      formik.resetForm();
     } else {
-      localStorage.setItem('user', JSON.stringify(token));
+      handleLogin(token);
     }
-    formik.resetForm();
   }
 
   const formik = useFormik({
