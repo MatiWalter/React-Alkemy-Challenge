@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useMemo, useState } from 'react'
 import { useFormik } from 'formik';
 import { getHeroesByName } from '../../helpers/getHeroes';
+import { HeroCard } from '../hero/HeroCard';
 
 export const SearchScreen = () => {
 
@@ -8,7 +9,7 @@ export const SearchScreen = () => {
 
   const validate = (values) => {
     const errors = {};
-    if (!values.name) {
+    if (values.name.trim().length === 0) {
       errors.name = 'Required';
     }
     return errors;
@@ -26,6 +27,12 @@ export const SearchScreen = () => {
     validate,
     onSubmit
   });
+
+  // const heroesFiltered = useMemo(() => {
+  //   getHeroesByName(formik.values.name), 
+  //   [formik.values.name]
+  // });
+  // console.log(heroesFiltered);
 
   return (
     <div className="search">
@@ -57,11 +64,21 @@ export const SearchScreen = () => {
             </button>
           </form>
         </div>
-        {heroes.length !== 0 &&
+        {
+          heroes.length > 0 &&
           <div className="col-7 mt-5">
             <h4>Results</h4>
             <hr />
-          </div>}
+            {
+              heroes.map(hero => {
+                <HeroCard
+                  key={hero.id}
+                  {...hero}
+                />
+              })
+            }
+          </div>
+        }
       </div>
     </div>
   )
