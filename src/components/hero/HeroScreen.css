@@ -1,0 +1,16 @@
+.hero {
+  min-width: 260px;
+  max-width: 300px;
+  max-height: 70vh;
+  border-radius: 5px;
+  overflow: hidden;
+  position: relative;
+  margin: 10px auto;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.hero:hover {
+  transition: .5s;
+  transform: scale(1.1);
+}

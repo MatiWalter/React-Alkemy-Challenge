@@ -11,7 +11,7 @@
   npm run dev
 ```
 
-## Script disponibles
+## Scripts disponibles
 
 ### `npm run dev`
 

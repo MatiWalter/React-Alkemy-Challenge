@@ -9,6 +9,6 @@ export const getHeroesByName = async (name) => {
 export const getHeroById = async (heroId) => {
   const url = `http://localhost:8080/hero/${heroId}`;
   const { data: hero } = await axios.get(url);
-  console.log(hero);
+  return hero;
 }
 

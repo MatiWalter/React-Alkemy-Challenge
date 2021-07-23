@@ -5,3 +5,7 @@ Content-Type: 'application/json'
   "email": "challenge@alkemy.org",
   "password": "react"
 }
+
+###
+
+GET http://localhost:8080/search/batman HTTP/1.1
