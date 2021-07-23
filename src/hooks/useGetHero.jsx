@@ -5,7 +5,8 @@ import { getHeroById } from "../helpers/getHeroes";
 export const useGetHero = (heroId) => {
 
   const [state, setState] = useState({
-    data: []
+    data: [],
+    loading: true
   });
 
   useEffect(() => {
@@ -13,6 +14,7 @@ export const useGetHero = (heroId) => {
       .then(hero => {
         setState({
           data: hero,
+          loading: false
         });
       })
   }, [heroId]);

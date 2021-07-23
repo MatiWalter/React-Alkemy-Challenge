@@ -1,4 +1,9 @@
+:root {
+  --primary: #0d6efd;
+}
+
 html, body {
+  background-color: #EEEEEE;
   overflow-x: hidden;
 }
 
