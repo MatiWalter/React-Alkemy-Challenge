@@ -1,0 +1,12 @@
+html, body {
+  overflow-x: hidden;
+}
+
+footer {
+  height: 5%;
+  color: #fff;
+}
+
+.team, .search {
+  margin-top: 6%;
+}
