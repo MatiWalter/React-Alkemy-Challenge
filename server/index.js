@@ -13,25 +13,6 @@ app.get('/', (req, res) => {
   res.send('Backend online');
 });
 
-app.post('/login', async (req, res) => {
-  const { email, password } = req.body;
-  try {
-    
-    const token = await axios.post('http://challenge-react.alkemy.org', {
-      email,
-      password
-    });
-    res.status(200).send(token);
-
-  } catch (error) {
-
-    res.status(400).json({
-      ok: false,
-      msg: 'Please contact the website administrator'
-    });
-  }
-});
-
 app.get('/hero/:id', async (req, res) => {
   try {
 
