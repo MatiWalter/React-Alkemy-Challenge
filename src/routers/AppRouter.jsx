@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   BrowserRouter as Router,
   Switch,
@@ -7,11 +7,24 @@ import { PublicRoute } from './PublicRoute';
 import { LoginScreen } from '../components/login/LoginScreen'
 import { PrivateRoute } from './PrivateRoute';
 import { HomeRoutes } from './HomeRoutes';
-import { AuthContext } from '../auth/AuthContext';
+import { useDispatch, useSelector } from 'react-redux';
+import { startLogin } from '../actions/auth';
 
 export const AppRouter = () => {
 
-  const { user } = useContext(AuthContext);
+  const dispatch = useDispatch();
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const {token} = useSelector(state => state.user);
+
+  useEffect(() => {
+    if (token) {
+      setIsLoggedIn(true);
+      dispatch(startLogin(token));
+    } else {
+      setIsLoggedIn(false);
+    }
+  }, [dispatch, setIsLoggedIn, token]);
 
   return (
     <Router>
@@ -20,12 +33,12 @@ export const AppRouter = () => {
           <PublicRoute
             path="/login"
             component={LoginScreen}
-            isAuthenticated={user.logged}
+            isAuthenticated={isLoggedIn}
           />
           <PrivateRoute
             path="/"
             component={HomeRoutes}
-            isAuthenticated={user.logged}
+            isAuthenticated={isLoggedIn}
           />
         </Switch>
       </div>

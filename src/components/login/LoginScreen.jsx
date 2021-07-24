@@ -1,24 +1,19 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { useFormik } from 'formik'
 import Swal from 'sweetalert2';
-import { AuthContext } from '../../auth/AuthContext';
 import { Footer } from '../ui/Footer'
-import { types } from '../../types/types';
 import { getToken } from '../../helpers/getToken'
+import { login, startLogin } from '../../actions/auth';
+import { useDispatch } from 'react-redux';
 import 'sweetalert2/dist/sweetalert2.min.css';
 
 export const LoginScreen = ({ history }) => {
 
-  const { dispatch } = useContext(AuthContext);
+  const dispatch = useDispatch();
 
   const handleLogin = (token) => {
     const lastPath = localStorage.getItem('lastPath') || '/';
-    dispatch({
-      type: types.login,
-      payload: {
-        token
-      }
-    });
+    dispatch(startLogin(token));
     history.replace(lastPath);
   }
 

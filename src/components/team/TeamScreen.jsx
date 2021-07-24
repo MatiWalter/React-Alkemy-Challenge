@@ -1,6 +1,7 @@
 import React from 'react';
 
 export const TeamScreen = () => {
+
   return (
     <div className="team d-flex flex-column align-items-center">
       <h1 className="text-center">Your team</h1>
