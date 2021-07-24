@@ -1,6 +1,7 @@
 import React from 'react';
 import { Redirect, Route } from 'react-router';
 import { PropTypes } from 'prop-types';
+import { useSelector } from 'react-redux';
 
 export const PrivateRoute = ({
 	isAuthenticated,
@@ -8,12 +9,14 @@ export const PrivateRoute = ({
 	...rest
 }) => {
 
+	localStorage.setItem('lastPath', rest.location.pathname);
+
 	return (
 		<Route {...rest}
 			component={(props) => (
-				(isAuthenticated)
-					? (<Component {...props} />)
-					: (<Redirect to="/login" />)
+				(!isAuthenticated)
+				? (<Redirect to="/login" />)
+				: (<Component {...props} />)
 			)}
 		/>
 	)

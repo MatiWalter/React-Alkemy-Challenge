@@ -3,5 +3,6 @@ export const types = {
   logout: '[auth] logout',
 
   addHero: '[team] add Hero',
-  removeHero: '[team] remove Hero'
+  removeHero: '[team] remove Hero',
+  logoutCleaning: '[team] clean team'
 }

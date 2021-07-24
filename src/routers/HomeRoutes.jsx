@@ -7,7 +7,6 @@ import {
 import { HeroScreen } from '../components/hero/HeroScreen';
 import { SearchScreen } from '../components/search/SearchScreen';
 import { TeamScreen } from '../components/team/TeamScreen';
-import { Footer } from '../components/ui/Footer';
 import { Navbar } from '../components/ui/Navbar';
 
 export const HomeRoutes = () => {

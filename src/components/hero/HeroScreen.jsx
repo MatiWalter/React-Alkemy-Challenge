@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, useParams } from 'react-router-dom';
+import Swal from 'sweetalert2';
+import { addHero } from '../../actions/team';
 import { useGetHeroId } from '../../hooks/useGetHeroId';
 import { Loading } from '../ui/Loading';
 import './HeroScreen.css';
@@ -9,6 +12,9 @@ export const HeroScreen = ({ history }) => {
   const { heroId } = useParams();
   const { data: hero, loading } = useGetHeroId(heroId);
   const [image, setImage] = useState();
+  const dispatch = useDispatch();
+
+  const [favorite, setFavorite] = useState(false);
 
   useEffect(() => {
     setImage(hero.image)
@@ -27,8 +33,10 @@ export const HeroScreen = ({ history }) => {
   }
 
   const handleFavorite = () => {
+    dispatch(addHero(hero));
+    Swal.fire('Added', 'Added','success')
+    setFavorite(!favorite);
   }
-
 
   const {
     name,
@@ -68,6 +76,7 @@ export const HeroScreen = ({ history }) => {
                       <button
                         className="btn btn-primary my-3"
                         onClick={handleFavorite}
+                        disabled={favorite}
                       >
                         Add to team
                       </button>
