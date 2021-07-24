@@ -1,9 +1,13 @@
 import axios from 'axios';
 
 export const getHeroesByName = async (name) => {
-  const url = `http://localhost:8080/search/${name}`;
-  const { data: heroes } = await axios.get(url);
-  return heroes;
+  try {
+    const url = `http://localhost:8080/search/${name}`;
+    const { data: heroes } = await axios.get(url);
+    return heroes;
+  } catch (error) {
+    return error;
+  }
 }
 
 export const getHeroById = async (heroId) => {

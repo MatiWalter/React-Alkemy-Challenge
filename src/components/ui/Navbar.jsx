@@ -1,23 +1,21 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link, NavLink, useHistory } from 'react-router-dom';
-import { AuthContext } from '../../auth/AuthContext';
-import { types } from '../../types/types';
+import { useDispatch } from 'react-redux';
+import { startLogout } from '../../actions/auth';
 
 export const Navbar = () => {
 
-  const { dispatch } = useContext(AuthContext);
+  const dispatch = useDispatch();
+
   const history = useHistory();
 
   const handleLogout = () => {
     history.replace('/login');
-
-    dispatch({
-      type: types.logout
-    });
+    dispatch(startLogout());
   }
 
   return (
-    <nav className="navbar fixed-top navbar-expand-sm navbar-dark bg-dark">
+    <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
       <div className="container-fluid">
         <Link
           className="navbar-brand"

@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { getHeroById } from "../helpers/getHeroes";
 
-
-export const useGetHero = (heroId) => {
+export const useGetHeroId = (heroId) => {
 
   const [state, setState] = useState({
     data: [],

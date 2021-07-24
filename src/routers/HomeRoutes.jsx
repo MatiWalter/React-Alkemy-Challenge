@@ -20,7 +20,6 @@ export const HomeRoutes = () => {
           <Route exact path="/search" component={SearchScreen} />
           <Redirect to="/" />
         </Switch>
-      <Footer />
     </>
   )
 }

@@ -1,38 +1,35 @@
-import React, { useMemo, useState } from 'react'
-import { useFormik } from 'formik';
-import { getHeroesByName } from '../../helpers/getHeroes';
-import { HeroCard } from '../hero/HeroCard';
+import React, { useState } from 'react'
+import { useGetHeroName } from '../../hooks/useGetHeroName';
+import { Pagination } from '../ui/Pagination';
+import { HeroGrid } from '../hero/HeroGrid';
+import { Loading } from '../ui/Loading';
 
 export const SearchScreen = () => {
 
-  const [heroes, setHeroes] = useState([]);
+  const [submited, setSubmited] = useState(false);
+  const [searchHero, setSearchHero] = useState();
+  const [hero, setHero] = useState();
 
-  const validate = (values) => {
-    const errors = {};
-    if (values.name.trim().length === 0) {
-      errors.name = 'Required';
-    }
-    return errors;
+  const [currentPage, setCurrentPage] = useState(1);
+  const [heroesPerPage] = useState(9);
+
+  const indexOfLastHero = currentPage * heroesPerPage;
+  const indexOfFirstHero = indexOfLastHero - heroesPerPage;
+
+  const paginate = pageNumber => setCurrentPage(pageNumber);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setSubmited(true);
+    setHero(searchHero)
   }
 
-  const onSubmit = async () => {
-    const data = await getHeroesByName(formik.values.name.trim(''));
-    setHeroes(data);
+  const handleChange = (e) => {
+    setSearchHero(e.target.value);
   }
 
-  const formik = useFormik({
-    initialValues: {
-      name: '',
-    },
-    validate,
-    onSubmit
-  });
-
-  // const heroesFiltered = useMemo(() => {
-  //   getHeroesByName(formik.values.name), 
-  //   [formik.values.name]
-  // });
-  // console.log(heroesFiltered);
+  const { data: heroes, loading } = useGetHeroName(hero);
+  let currentHeroes = heroes.slice(indexOfFirstHero, indexOfLastHero);
 
   return (
     <div className="search">
@@ -42,7 +39,7 @@ export const SearchScreen = () => {
           <h4>Search</h4>
           <hr />
           <form
-            onSubmit={formik.handleSubmit}
+            onSubmit={handleSubmit}
             className="d-grid gap-2"
           >
             <input
@@ -52,10 +49,8 @@ export const SearchScreen = () => {
               name="name"
               id="name"
               autoComplete="off"
-              value={formik.values.name}
-              onChange={formik.handleChange}
+              onChange={handleChange}
             />
-            {formik.errors.name ? <div className="text-danger ms-2 d-flex align-items-center">{formik.errors.name}</div> : null}
             <button
               type="submit"
               className="btn m-1 btn-outline-primary"
@@ -65,21 +60,29 @@ export const SearchScreen = () => {
           </form>
         </div>
         {
-          heroes.length > 0 &&
-          <div className="col-7 mt-5">
+          <div className="col-11 mt-5">
             <h4>Results</h4>
             <hr />
             {
-              heroes.map(hero => {
-                <HeroCard
-                  key={hero.id}
-                  {...hero}
-                />
-              })
+              (heroes.length === 0 && hero !== '')
+              &&
+              <div className="alert alert-info">
+                Search a hero
+              </div>
+            }
+            {
+              submited &&
+              heroes.length > 0 &&
+              <HeroGrid heroes={currentHeroes} />
             }
           </div>
         }
+        <Pagination
+          heroesPerPage={heroesPerPage}
+          totalHeroes={heroes.length}
+          paginate={paginate}
+        />
       </div>
-    </div>
+    </div >
   )
 }
