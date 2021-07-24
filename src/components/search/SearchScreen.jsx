@@ -2,9 +2,8 @@ import React, { useState } from 'react'
 import { useGetHeroName } from '../../hooks/useGetHeroName';
 import { Pagination } from '../ui/Pagination';
 import { HeroGrid } from '../hero/HeroGrid';
-import { Loading } from '../ui/Loading';
 
-export const SearchScreen = () => {
+export const SearchScreen = ({ history }) => {
 
   const [submited, setSubmited] = useState(false);
   const [searchHero, setSearchHero] = useState();
@@ -28,7 +27,7 @@ export const SearchScreen = () => {
     setSearchHero(e.target.value);
   }
 
-  const { data: heroes, loading } = useGetHeroName(hero);
+  const { data: heroes } = useGetHeroName(hero);
   let currentHeroes = heroes.slice(indexOfFirstHero, indexOfLastHero);
 
   return (
@@ -70,11 +69,13 @@ export const SearchScreen = () => {
                 Search a hero
               </div>
             }
-            {
-              submited &&
-              heroes.length > 0 &&
-              <HeroGrid heroes={currentHeroes} />
-            }
+            <div className="d-flex justify-content-center flex-wrap mt-5">
+              {
+                submited &&
+                heroes.length > 0 &&
+                <HeroGrid heroes={currentHeroes} />
+              }
+            </div>
           </div>
         }
         <Pagination

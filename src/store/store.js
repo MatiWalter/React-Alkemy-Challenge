@@ -9,7 +9,7 @@ const composeEnhancers = (typeof window !== 'undefined'
 
 const reducers = combineReducers({
   user: authReducer,
-  hero: heroReducer,
+  team: heroReducer,
 });
 
 export const store = createStore(
