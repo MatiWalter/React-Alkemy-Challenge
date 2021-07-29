@@ -39,38 +39,38 @@ const Back = ({ id, url, name }) => {
     <div className="back">
       <img src={url} className="img img-responsive" alt={name} />
       <div className="d-flex flex-column align-items-center mt-3 gap-4">
-        <h2 className="text-dark mt-3">Powerstats</h2>
+        <h2 className="text-primary mt-3">Powerstats</h2>
         {
           !loading &&
           <div className="d-flex flex-column gap-3">
             <div className="progress" style={{width: '200px'}}>
-              <div className="progress-bar bg-secondary" style={{ width: powerstats.intelligence + '%' }}>
-                {powerstats.intelligence}
+              <div className="progress-bar bg-secondary" style={{ width: powerstats.intelligence + '%'}}>
+                {powerstats.intelligence !== 'null' ? powerstats.intelligence : 0}
               </div>
             </div>
             <div className="progress" style={{width: '200px'}}>
               <div className="progress-bar bg-secondary" style={{ width: powerstats.strength + '%' }}>
-                {powerstats.strength}
+                {powerstats.strength !== 'null' ? powerstats.strength : 0}
               </div>
             </div>
             <div className="progress" style={{width: '200px'}}>
               <div className="progress-bar bg-secondary" style={{ width: powerstats.speed + '%' }}>
-                {powerstats.speed}
+                {powerstats.speed !== 'null' ? powerstats.speed : 0}
               </div>
             </div>
             <div className="progress" style={{width: '200px'}}>
               <div className="progress-bar bg-secondary" style={{ width: powerstats.durability + '%' }}>
-                {powerstats.durability}
+                {powerstats.durability !== 'null' ? powerstats.durability : 0}
               </div>
             </div>
             <div className="progress" style={{width: '200px'}}>
               <div className="progress-bar bg-secondary" style={{ width: powerstats.power + '%' }}>
-                {powerstats.power}
+                {powerstats.power !== 'null' ? powerstats.power : 0}
               </div>
             </div>
             <div className="progress" style={{width: '200px'}}>
               <div className="progress-bar bg-secondary" style={{ width: powerstats.combat + '%' }}>
-                {powerstats.combat}
+                {powerstats.combat !== 'null' ? powerstats.combat : 0}
               </div>
             </div>
           </div>
