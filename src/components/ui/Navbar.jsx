@@ -11,9 +11,9 @@ export const Navbar = () => {
   const history = useHistory();
 
   const handleLogout = () => {
-    history.replace('/login');
-    dispatch(startLogout());
     dispatch(teamLogout());
+    dispatch(startLogout());
+    history.replace('/login');
   }
 
   return (

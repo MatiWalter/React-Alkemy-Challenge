@@ -35,7 +35,7 @@
 
 .back {
     backface-visibility: hidden;
-    background-color: #212121;
+    /* background-color: rgba(33, 33, 33, 0.5); */
     border-radius: 5px;
     bottom: 0;
     color: #FFF;
@@ -46,6 +46,12 @@
     position: absolute;
     transform: rotateY(-180deg);
     transition: transform ease 500ms;
+}
+
+.back img {
+    z-index: -2;
+    position: inherit;
+    opacity: 0.2;
 }
 
 .front {
