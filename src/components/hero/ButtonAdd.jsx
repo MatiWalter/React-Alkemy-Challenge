@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useGetHeroId } from '../../hooks/useGetHeroId';
 import Swal from 'sweetalert2';
 import { addHero, removeHero } from '../../actions/team';
-import { ButtonRemove } from './ButtonRemove';
 
 export const ButtonAdd = ({ id }) => {
 
