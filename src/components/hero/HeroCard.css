@@ -1,31 +1,56 @@
-.my-card {
+.hero-card {
     border-radius: 5px;
     cursor: pointer;
-    margin-left: 5%;
+    margin-left: 2%;
     overflow: hidden;
     position: relative;
+    margin-bottom: 2%;
 }
  
-.my-card img {
-    transition: all 0.15s linear;
+.hero-card img {
     filter: brightness(70%);
-    position: relative;
-    max-height: 50vh; 
+    max-height: 400px; 
     max-width: 300px;
     min-width: 260px;
-    margin-bottom: 5%;
+    position: relative;
+    transition: all 0.15s linear;
 }
 
-.my-card .profile-name {
+.hero-card .profile-name {
+    bottom: 20px;
+    color: #FFF;
     font-size: 25px;
     font-weight: bold;
-    color: #FFF;
+    left: 20px;
     position: absolute;
-    /* top: 10px; */
-    left: 25px;
-    bottom: -120px;
 }
 
-.my-card img:hover {
-    transform: scale(1.01);
+.flipped .front {
+    transform: rotateY(180deg);
+}
+
+.flipped .back {
+    transform: rotateY(0deg);
+}
+
+.back {
+    backface-visibility: hidden;
+    background-color: #212121;
+    border-radius: 5px;
+    bottom: 0;
+    color: #FFF;
+    margin-bottom: 2.2%;
+    margin-left: 1.1%;
+    min-height: 400px;
+    min-width: 285px;
+    position: absolute;
+    transform: rotateY(-180deg);
+    transition: transform ease 500ms;
+}
+
+.front {
+    backface-visibility: hidden;
+    transform: rotateY(0deg);
+    transition: transform ease 500ms;
+    z-index: 2;
 }

@@ -1,10 +1,10 @@
 import { types } from "../types/types";
 
-const initialTeam = {
+const team = {
   team: []
 }
 
-export const heroReducer = (state = initialTeam, action) => {
+export const heroReducer = (state = team, action) => {
   switch (action.type) {
     case types.addHero:
       let index = state.team.findIndex(hero => hero.id === action.payload.id);
