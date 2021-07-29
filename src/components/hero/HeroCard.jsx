@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useGetHeroId } from '../../hooks/useGetHeroId';
 import { ButtonAdd } from './ButtonAdd';
 import './HeroCard.css';
 
@@ -32,13 +33,55 @@ const Front = ({ name, url }) => {
 
 const Back = ({ id, url, name }) => {
 
+  const { data: { powerstats }, loading } = useGetHeroId(id);
+
   return (
-    <div className="back d-flex justify-content-center align-items-center gap-2">
+    <div className="back">
       <img src={url} className="img img-responsive" alt={name} />
-      <Link to={`./hero/${id}`}>
-        <button className="btn btn-secondary">Details</button>
-      </Link>
-      <ButtonAdd id={id} />
+      <div className="d-flex flex-column align-items-center mt-3 gap-4">
+        <h2 className="text-dark mt-3">Powerstats</h2>
+        {
+          !loading &&
+          <div className="d-flex flex-column gap-3">
+            <div className="progress" style={{width: '200px'}}>
+              <div className="progress-bar bg-secondary" style={{ width: powerstats.intelligence + '%' }}>
+                {powerstats.intelligence}
+              </div>
+            </div>
+            <div className="progress" style={{width: '200px'}}>
+              <div className="progress-bar bg-secondary" style={{ width: powerstats.strength + '%' }}>
+                {powerstats.strength}
+              </div>
+            </div>
+            <div className="progress" style={{width: '200px'}}>
+              <div className="progress-bar bg-secondary" style={{ width: powerstats.speed + '%' }}>
+                {powerstats.speed}
+              </div>
+            </div>
+            <div className="progress" style={{width: '200px'}}>
+              <div className="progress-bar bg-secondary" style={{ width: powerstats.durability + '%' }}>
+                {powerstats.durability}
+              </div>
+            </div>
+            <div className="progress" style={{width: '200px'}}>
+              <div className="progress-bar bg-secondary" style={{ width: powerstats.power + '%' }}>
+                {powerstats.power}
+              </div>
+            </div>
+            <div className="progress" style={{width: '200px'}}>
+              <div className="progress-bar bg-secondary" style={{ width: powerstats.combat + '%' }}>
+                {powerstats.combat}
+              </div>
+            </div>
+          </div>
+        }
+        <div className="d-flex align-items-end mt-3 gap-2">
+          <Link to={`./hero/${id}`}>
+            <button className="btn btn-secondary my-3">Details</button>
+          </Link>
+          <ButtonAdd id={id} />
+        </div>
+      </div>
     </div>
   )
 }
