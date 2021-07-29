@@ -9,7 +9,7 @@ export const Pagination = ({ heroesPerPage, totalHeroes, paginate }) => {
 
   return (
     <nav className="d-flex justify-content-center mt-3 mb-5">
-      <ul className='pagination'>
+      <ul className='pagination col-10 flex-wrap justify-content-center'>
         {pageNumbers.map(number => (
           <li key={number} className='page-item' style={{cursor: 'pointer'}}>
             <a onClick={() => paginate(number)} className='page-link'>
