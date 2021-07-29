@@ -1,20 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, useParams } from 'react-router-dom';
-import Swal from 'sweetalert2';
-import { addHero } from '../../actions/team';
 import { useGetHeroId } from '../../hooks/useGetHeroId';
 import { Loading } from '../ui/Loading';
+import { ButtonAdd } from './ButtonAdd';
 import './HeroScreen.css';
 
 export const HeroScreen = ({ history }) => {
 
   const { heroId } = useParams();
-  const { data: hero, loading } = useGetHeroId(heroId);
+  const { data: hero } = useGetHeroId(heroId);
   const [image, setImage] = useState();
-  const dispatch = useDispatch();
-  const { team } = useSelector(state => state.team);
-  const [favorite, setFavorite] = useState(false);
 
   useEffect(() => {
     setImage(hero.image)
@@ -29,25 +24,6 @@ export const HeroScreen = ({ history }) => {
       history.push('/');
     } else {
       history.goBack();
-    }
-  }
-
-  const handleFavorite = () => {
-    dispatch(addHero(hero));
-    setFavorite(!favorite);
-    Swal.fire('Added', 'Added', 'success');
-  }
-
-  useEffect(() => {
-    if (isFavorite()) {
-      setFavorite(true);
-    }
-  }, [])
-
-  const isFavorite = () => {
-    const heroes = Object.entries(team).map(h => h[1]);
-    if (heroes.find(h => h.id === heroId) !== undefined) {
-      return true;
     }
   }
 
@@ -86,14 +62,7 @@ export const HeroScreen = ({ history }) => {
                       <li className="list-group-item">Lugar de trabajo: {work.base}</li>
                     </ul>
                     <div className="d-flex gap-2 justify-content-center">
-                      <button
-                        className="btn btn-primary my-3"
-                        onClick={handleFavorite}
-                        disabled={favorite}
-                      >
-                        Add to team
-                      </button>
-
+                      <ButtonAdd id={heroId} />
                       <button
                         className="btn btn-secondary my-3"
                         onClick={handleReturn}

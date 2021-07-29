@@ -5,7 +5,7 @@ export const addHero = (hero) => ({
   payload: hero
 });
 
-export const removeHero = ({ id }) => ({
+export const removeHero = (id) => ({
   type: types.removeHero,
   payload: id
 });
