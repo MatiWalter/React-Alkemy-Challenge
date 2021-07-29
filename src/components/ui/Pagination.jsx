@@ -8,7 +8,7 @@ export const Pagination = ({ heroesPerPage, totalHeroes, paginate }) => {
   }
 
   return (
-    <nav className="d-flex justify-content-center mb-5">
+    <nav className="d-flex justify-content-center mt-3 mb-5">
       <ul className='pagination'>
         {pageNumbers.map(number => (
           <li key={number} className='page-item' style={{cursor: 'pointer'}}>

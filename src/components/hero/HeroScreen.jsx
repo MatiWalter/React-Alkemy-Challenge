@@ -13,7 +13,7 @@ export const HeroScreen = ({ history }) => {
   const { data: hero, loading } = useGetHeroId(heroId);
   const [image, setImage] = useState();
   const dispatch = useDispatch();
-
+  const { team } = useSelector(state => state.team);
   const [favorite, setFavorite] = useState(false);
 
   useEffect(() => {
@@ -34,8 +34,21 @@ export const HeroScreen = ({ history }) => {
 
   const handleFavorite = () => {
     dispatch(addHero(hero));
-    Swal.fire('Added', 'Added','success')
     setFavorite(!favorite);
+    Swal.fire('Added', 'Added', 'success');
+  }
+
+  useEffect(() => {
+    if (isFavorite()) {
+      setFavorite(true);
+    }
+  }, [])
+
+  const isFavorite = () => {
+    const heroes = Object.entries(team).map(h => h[1]);
+    if (heroes.find(h => h.id === heroId) !== undefined) {
+      return true;
+    }
   }
 
   const {
@@ -93,46 +106,6 @@ export const HeroScreen = ({ history }) => {
               </div>
             </div>
           </div>
-          // <div className="row d-flex align-items-center justify-content-center">
-          //   <div className="col-12 d-flex flex-column align-items-center" >
-          //     <div className="col-12 gap-3 d-flex flex-column">
-          //       <div className="hero animate__animated animate__fadeIn">
-          //         <img
-          //           src={image.url}
-          //           className="img-thumbnail animate__animated animate__fadeInLeft animate__fast"
-          //           alt={name}
-          //         />
-          //       </div>
-          //       <div className="col-12">
-          //         <h3 className="ms-4">{name}</h3>
-          // <ul className="list-group list-group-flush">
-          //   <li className="list-group-item">Nombre: {biography["full-name"]}</li>
-          //   <li className="list-group-item">Aliases: {biography.aliases.join(' - ')}</li>
-          //   <li className="list-group-item">Peso: {appearance.weight[1]}</li>
-          //   <li className="list-group-item">Altura: {appearance.height[1]}</li>
-          //   <li className="list-group-item">Color de ojos: {appearance["eye-color"]}</li>
-          //   <li className="list-group-item">Color de pelo: {appearance["hair-color"]}</li>
-          //   <li className="list-group-item">Lugar de trabajo: {work.base}</li>
-          // </ul>
-          //       </div>
-          //     </div>
-          //     <div className="d-flex gap-2">
-          //       <button
-          //         className="btn btn-primary mt-5"
-          //         onClick={handleFavorite}
-          //       >
-          //         Add to team
-          //       </button>
-
-          //       <button
-          //         className="btn btn-secondary mt-5"
-          //         onClick={handleReturn}
-          //       >
-          //         Return
-          //       </button>
-          //     </div>
-          //   </div >
-          // </div >
           : <Loading />
       }
     </>
