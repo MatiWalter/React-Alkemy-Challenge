@@ -19,7 +19,7 @@ export const TeamScreen = () => {
 
   return (
     <div className="team d-flex flex-column align-items-center">
-      <div className="d-flex justify-content-center flex-wrap gap-4">
+      <div className="d-flex col-12 flex-column flex-md-row align-items-center justify-content-center flex-wrap gap-4">
         <Powerstats />
         <div className="d-flex flex-column align-items-center">
           <h2>Average Height</h2>
@@ -30,11 +30,14 @@ export const TeamScreen = () => {
           <h4>{team.length ? Math.round(stats.weight / team.length) : 0} Kgs</h4>
         </div>
       </div>
-      <h2 className="text-center mt-3">Your team</h2>
-      <div className="d-flex justify-content-center flex-wrap gap-2 mt-3">
-        {
-          <HeroGrid heroes={team} />
-        }
+      <div className="bg-dark rounded w-100 mt-5">
+        <h2 className="text-center text-white mt-3">Your team</h2>
+
+        <div className="d-flex col-12 justify-content-center flex-wrap gap-2 mt-3">
+          {
+            <HeroGrid heroes={team} />
+          }
+        </div>
       </div>
     </div>
   )

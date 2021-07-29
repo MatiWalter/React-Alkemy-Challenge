@@ -7,13 +7,10 @@ const team = {
 export const heroReducer = (state = team, action) => {
   switch (action.type) {
     case types.addHero:
-      let index = state.team.findIndex(hero => hero.id === action.payload.id);
-      if (index === -1 && state.team.length < 6)
-        return {
-          ...state,
-          team: [...state.team, action.payload],
-        }
-      return state
+      return {
+        ...state,
+        team: [...state.team, action.payload],
+      }
     case types.removeHero:
       return {
         ...state,

@@ -14,18 +14,18 @@ export const Powerstats = () => {
 
   const { team } = useSelector(state => state.team);
   team.map(hero => {
-    accumulativeStats.intelligence += Number(hero.powerstats.intelligence)
-    accumulativeStats.strength += Number(hero.powerstats.strength)
-    accumulativeStats.speed += Number(hero.powerstats.speed)
-    accumulativeStats.durability += Number(hero.powerstats.durability)
-    accumulativeStats.power += Number(hero.powerstats.power)
-    accumulativeStats.combat += Number(hero.powerstats.combat)
+    accumulativeStats.intelligence += Number(hero.powerstats.intelligence) || 0
+    accumulativeStats.strength += Number(hero.powerstats.strength) || 0
+    accumulativeStats.speed += Number(hero.powerstats.speed) || 0
+    accumulativeStats.durability += Number(hero.powerstats.durability) || 0
+    accumulativeStats.power += Number(hero.powerstats.power) || 0
+    accumulativeStats.combat += Number(hero.powerstats.combat) || 0
   });
 
   const [principalStat, setPrincipalStat] = useState();
 
   useEffect(() => {
-    const maxStat = Math.max(...Object.values(accumulativeStats));
+    const maxStat = Math.max(...Object.values(accumulativeStats)) || '';
     setPrincipalStat(Object.keys(accumulativeStats).find(stat => accumulativeStats[stat] === maxStat));
   }, [team])
 
