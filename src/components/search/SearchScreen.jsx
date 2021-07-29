@@ -83,6 +83,7 @@ export const SearchScreen = () => {
           heroesPerPage={heroesPerPage}
           totalHeroes={heroes.length}
           paginate={paginate}
+          currentPage={currentPage}
         />
       </div>
     </div >
