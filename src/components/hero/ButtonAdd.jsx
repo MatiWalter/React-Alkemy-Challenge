@@ -26,8 +26,12 @@ export const ButtonAdd = ({ id }) => {
 
   const handleFavorite = () => {
     dispatch(addHero(hero));
-    setFavorite(!favorite);
-    Swal.fire('Added', 'Added', 'success');
+    if (team.length < 6){
+      setFavorite(!favorite);
+      Swal.fire('Added', 'Added', 'success');
+    } else {
+      Swal.fire('Error', 'Your team is at their maximum capacity', 'error')
+    }
   }
 
   const handleRemove = () => {
