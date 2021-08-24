@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export const getHeroesByName = async (name) => {
   try {
-    const url = `http://localhost:8080/search/${name}`;
+    const url = `https://mw-superhero-back.herokuapp.com/search/${name}`;
     const { data: heroes } = await axios.get(url);
     return heroes;
   } catch (error) {
@@ -11,7 +11,7 @@ export const getHeroesByName = async (name) => {
 }
 
 export const getHeroById = async (heroId) => {
-  const url = `http://localhost:8080/hero/${heroId}`;
+  const url = `https://mw-superhero-back.herokuapp.com/hero/${heroId}`;
   const { data: hero } = await axios.get(url);
   return hero;
 }
