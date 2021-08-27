@@ -11,8 +11,12 @@ export const getHeroesByName = async (name) => {
 }
 
 export const getHeroById = async (heroId) => {
-  const url = `https://mw-superhero-back.herokuapp.com/hero/${heroId}`;
-  const { data: hero } = await axios.get(url);
-  return hero;
+  try {
+    const url = `https://mw-superhero-back.herokuapp.com/hero/${heroId}`;
+    const { data: hero } = await axios.get(url);
+    return hero;
+  } catch (error) {
+    return error;
+  }
 }
 
