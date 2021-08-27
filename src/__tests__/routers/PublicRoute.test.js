@@ -3,7 +3,7 @@
  */
 
 import React from 'react';
-import {prettyDOM, render, screen} from '@testing-library/react'
+import { render, screen} from '@testing-library/react'
 import { PrivateRoute } from '../../routers/PrivateRoute';
 import { MemoryRouter } from 'react-router-dom';
 
