@@ -40,7 +40,11 @@ describe('getHeroes helpers tests', () => {
         id: '3',
         name: 'b'
       }
-    ]
+    ];
+
+    global.fetch = jest.fn().mockReturnValue({
+      json: () => ({ data: mockHero }),
+    });
 
     test('should return a hero', async () => {
       const heroes = await getHeroesByName('batman');
