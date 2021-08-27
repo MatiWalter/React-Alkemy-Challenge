@@ -1,5 +1,5 @@
-import { authReducer } from "../../reducers/authReducer";
-import { types } from "../../types/types";
+import { authReducer } from "~/reducers/authReducer";
+import { types } from "~/types/types";
 
 describe('authReducer tests', () => {
   

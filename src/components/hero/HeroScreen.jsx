@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Redirect, useParams } from 'react-router-dom';
-import { useGetHeroId } from '../../hooks/useGetHeroId';
+import { useGetHeroId } from '~/hooks/useGetHeroId';
 import { Loading } from '../ui/Loading';
 import { ButtonAdd } from './ButtonAdd';
 import './HeroScreen.css';

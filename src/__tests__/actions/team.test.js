@@ -4,9 +4,9 @@
 
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import { addHero, removeHero, teamLogout } from '../../actions/team';
+import { addHero, removeHero, teamLogout } from '~/actions/team';
 
-import { types } from '../../types/types';
+import { types } from '~/types/types';
 
 const middlewares = [thunk];
 const mockStore = configureStore(middlewares);

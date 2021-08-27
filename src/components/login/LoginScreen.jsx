@@ -2,8 +2,8 @@ import React from 'react'
 import { useFormik } from 'formik'
 import Swal from 'sweetalert2';
 import { Footer } from '../ui/Footer'
-import { getToken } from '../../helpers/getToken'
-import { startLogin } from '../../actions/auth';
+import { getToken } from '~/helpers/getToken'
+import { startLogin } from '~/actions/auth';
 import { useDispatch } from 'react-redux';
 import 'sweetalert2/dist/sweetalert2.min.css';
 

@@ -12,7 +12,6 @@ import { useSelector } from 'react-redux';
 export const AppRouter = () => {
 
   const { logged } = useSelector(state => state.user);
-  console.log('logged', logged);
 
   return (
     <Router>

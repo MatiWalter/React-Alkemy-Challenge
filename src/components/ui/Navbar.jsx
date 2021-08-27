@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link, NavLink, useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { startLogout } from '../../actions/auth';
-import { teamLogout } from '../../actions/team';
+import { startLogout } from '~/actions/auth';
+import { teamLogout } from '~/actions/team';
 
 export const Navbar = () => {
 
