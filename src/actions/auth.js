@@ -19,7 +19,7 @@ export const startLogout = () => {
   }
 }
 
-export const logout = (token) => ({
+export const logout = () => ({
   type: types.logout
 })
 
