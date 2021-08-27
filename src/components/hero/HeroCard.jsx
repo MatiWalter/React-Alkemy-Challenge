@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useGetHeroId } from '../../hooks/useGetHeroId';
+import { useGetHeroId } from '~/hooks/useGetHeroId';
 import { ButtonAdd } from './ButtonAdd';
 import './HeroCard.css';
 

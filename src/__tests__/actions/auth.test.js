@@ -1,8 +1,8 @@
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 
-import { types } from '../../types/types';
-import { login, logout, startLogin, startLogout } from '../../actions/auth';
+import { types } from '~/types/types';
+import { login, logout, startLogin, startLogout } from '~/actions/auth';
 
 const middlewares = [thunk];
 const mockStore = configureStore(middlewares);

@@ -1,5 +1,5 @@
-import { heroReducer } from "../../reducers/heroReducer";
-import { types } from "../../types/types";
+import { heroReducer } from "~/reducers/heroReducer";
+import { types } from "~/types/types";
 
 describe('heroReducer tests', () => {
   

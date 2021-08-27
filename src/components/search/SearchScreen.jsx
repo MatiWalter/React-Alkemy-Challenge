@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useGetHeroName } from '../../hooks/useGetHeroName';
+import { useGetHeroName } from '~/hooks/useGetHeroName';
 import { Pagination } from '../ui/Pagination';
 import { HeroGrid } from '../hero/HeroGrid';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
