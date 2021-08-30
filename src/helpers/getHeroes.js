@@ -12,7 +12,7 @@ export const getHeroesByName = async (name) => {
 
 export const getHeroById = async (heroId) => {
   try {
-    const url = `https://mw-superhero-back.herokuapp.com/hero/${heroId}`;
+    const url = `https://superheroapi.com/api.php/4238353352842732/${heroId}`;
     const { data: hero } = await axios.get(url);
     return hero;
   } catch (error) {
