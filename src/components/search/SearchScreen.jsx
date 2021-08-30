@@ -1,24 +1,16 @@
-import React, { useState } from 'react'
-import { useGetHeroName } from '~/hooks/useGetHeroName';
-import { Pagination } from '../ui/Pagination';
+import React, { useState, useMemo } from 'react'
 import { HeroGrid } from '../hero/HeroGrid';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
+import { useLocation } from 'react-router-dom';
+import { getHeroesByName } from '../../helpers/getHeroes';
 
-export const SearchScreen = () => {
+export const SearchScreen = ({ history }) => {
 
-  const [submited, setSubmited] = useState(false);
-  const [hero, setHero] = useState();
+  const query = new URLSearchParams(useLocation().search);
+  const q = query.get('q') || '';
+  const [heroes, setHeroes] = useState([]);
 
-  const [currentPage, setCurrentPage] = useState(1);
-  const [heroesPerPage] = useState(9);
-
-  const indexOfLastHero = currentPage * heroesPerPage;
-  const indexOfFirstHero = indexOfLastHero - heroesPerPage;
-
-  const paginate = pageNumber => setCurrentPage(pageNumber);
-
-  const { data: heroes } = useGetHeroName(hero);
-  let currentHeroes = heroes.slice(indexOfFirstHero, indexOfLastHero);
+  useMemo(() => getHeroesByName( q ), [q]).then((heroes) => setHeroes(heroes));
 
   return (
     <div className="search">
@@ -28,7 +20,7 @@ export const SearchScreen = () => {
           <h4>Search</h4>
           <hr />
           <Formik
-            initialValues={{ name: '' }}
+            initialValues={{ name: q }}
             validate={values => {
               const errors = {};
               if (!values.name) {
@@ -37,10 +29,7 @@ export const SearchScreen = () => {
               return errors;
             }}
             onSubmit={(values) => {
-              if (values.name.trim().length > 0) {
-                setHero(values.name);
-              }
-              setSubmited(true);
+              history.push(`?q=${values.name}`);
             }}
           >
             <Form
@@ -70,21 +59,8 @@ export const SearchScreen = () => {
         <div className="col-11 mt-5">
           <h4>Results</h4>
           <hr />
-          {
-            submited && heroes.length > 0 &&
-            <div className="d-flex justify-content-center flex-wrap mt-5">
-              {
-                <HeroGrid heroes={currentHeroes} />
-              }
-            </div>
-          }
+            <HeroGrid heroes={heroes} />
         </div>
-        <Pagination
-          heroesPerPage={heroesPerPage}
-          totalHeroes={heroes.length}
-          paginate={paginate}
-          currentPage={currentPage}
-        />
       </div>
     </div >
   )
