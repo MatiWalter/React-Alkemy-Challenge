@@ -2,9 +2,9 @@ import axios from 'axios';
 
 export const getHeroesByName = async (name) => {
   try {
-    const url = `https://mw-superhero-back.herokuapp.com/search/${name}`;
+    const url = `https://superheroapi.com/api.php/4238353352842732/search/${name}`;
     const { data: heroes } = await axios.get(url);
-    return heroes;
+    return heroes.results || [];
   } catch (error) {
     return error;
   }
